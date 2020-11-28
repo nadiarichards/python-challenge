@@ -6,15 +6,15 @@ election_csv = os.path.join('Resources', 'election_data.csv')
 ###file_output = os.path.join('Analysis', 'election_analysis.txt')
 
 total_votes=0
-#unique_candidates=0
-candidates = []
-#months_of_change=[]
-#net_change_list=[]
+candidate_options = []
+candidate_voter_count={}
+#candidates={}
+#candidates=dict()
 #greatest_increase=["",0]
 #greatest_decrease=["",99999999999]
 #total_net=0
-candidate_voter_count=[0,0,0,0,0,0,0,0,0,0,0]
-candidate_index=[]
+
+#candidate_index=[]
 maximum_votes=0
 
 with open(election_csv) as csvfile:
@@ -23,35 +23,46 @@ with open(election_csv) as csvfile:
     header=next(csvreader)
     first_row=next(csvreader)
     total_votes+=1
-    voter_percent = int(candidate_voter_count/ total_votes) * 100
+    #voter_percent = int(candidate_voter_count/ total_votes) * 100
     #total_net+=int(first_row[1])
     #previous_net=int(first_row[1])
 
     for row in csvreader:
 
         total_votes+=1
-        
-        if row[2] not in candidates:
-            candidates.append(row[2])
+        candidate_names=row[2]
 
-            candidate =[candidate for candidate in candidates]
+        if candidate_names not in candidate_options:
+            candidate_options.append(candidate_names)
+            candidate_voter_count[candidate_options]=0
+            candidate_voter_count[candidate_options] += 1
 
-        for candidate in candidates:
+print(candidate_voter_count)
 
-            if row[2] == candidate:
-                candidate_index = int(candidate) - 1
-                candidate_voter_count[candidate_index] += 1
-                for candidate_index in range(len(candidates)):
-                    candidate_count = str(candidate_voter_count[candidate_index])
-                    candidate_name = str(candidates[candidate_index])
 
-                    candidate_voter_count=Counter(candidates)
+#candidate_voter_count=election_csv(row[2]).count(int(candidate_names)
+            #candidate =[candidate for candidate in candidates]
+
+        # for candidate in candidates:
+
+        #     if row[2] == candidate:
+        #         candidate_index = int(candidate) - 1
+        #         candidate_voter_count[candidate_index] += 1
+        #         for candidate_index in range(len(candidates)):
+        #             candidate_count = str(candidate_voter_count[candidate_index])
+        #             candidate_name = str(candidates[candidate_index])
+
+        #             candidate_voter_count=Counter(candidates)
+
+
+        #             for i in range(len(candidates)):
+        #                 candidates[i]=candidates[i].count()
 
                     #seriesObj = empDfObj.apply (lambda x: True if 11 in list (x) else False, axis=1) 
                     #numOfRows = len (seriesObj 
                     #[seriesObj == True].index)
 
-        print(canditate_voter_count)
+
                
                     #    percent = round(int(row[6]) / int(row[5]), 2)
                     #     review_percent.append(percent)
@@ -59,10 +70,10 @@ with open(election_csv) as csvfile:
                 # candidate_voter_count+=1
                 # candidate_voter_count.append(row[0])
 
-    if voter_percent == maximum_votes:
-        type_of_candidate = "Winner"
-    else:
-        type_of_candidate = "Looser"
+    #if voter_percent == maximum_votes:
+        #type_of_candidate = "Winner"
+    #else:
+        #type_of_candidate = "Looser"
 
 #hot_days = [temperature for temperature in july_temperatures if temperature > 90]
 

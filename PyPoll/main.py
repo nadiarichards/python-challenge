@@ -14,6 +14,7 @@ candidates = []
 #greatest_decrease=["",99999999999]
 #total_net=0
 candidate_voter_count=[0,0,0,0,0,0,0,0,0,0,0]
+candidate_index=[]
 maximum_votes=0
 
 with open(election_csv) as csvfile:
@@ -22,7 +23,7 @@ with open(election_csv) as csvfile:
     header=next(csvreader)
     first_row=next(csvreader)
     total_votes+=1
-    voter_percent = (candidate_voter_count/ total_votes) * 100
+    voter_percent = int(candidate_voter_count/ total_votes) * 100
     #total_net+=int(first_row[1])
     #previous_net=int(first_row[1])
 
@@ -45,6 +46,10 @@ with open(election_csv) as csvfile:
                     candidate_name = str(candidates[candidate_index])
 
                     candidate_voter_count=Counter(candidates)
+
+                    #seriesObj = empDfObj.apply (lambda x: True if 11 in list (x) else False, axis=1) 
+                    #numOfRows = len (seriesObj 
+                    #[seriesObj == True].index)
 
         print(canditate_voter_count)
                

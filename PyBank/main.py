@@ -5,10 +5,6 @@ import csv
 budget_csv = os.path.join('Resources', 'budget_data.csv')
 file_output = os.path.join('Analysis', 'budget_analysis.txt')
 
-#The total number of months included in the dataset
-# Name first and 2nd column
-# Define the function 
-    # For readability, it can help to assign your values to variables with descriptive names
 total_months=0
 months_of_change=[]
 net_change_list=[]
@@ -18,7 +14,7 @@ total_net=0
 
 with open(budget_csv) as csvfile:
 
-    # Split the data on commas
+
     csvreader = csv.reader(csvfile)
     header=next(csvreader)
     first_row=next(csvreader)

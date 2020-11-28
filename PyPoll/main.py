@@ -8,6 +8,7 @@ election_csv = os.path.join('Resources', 'election_data.csv')
 total_votes=0
 candidate_options = []
 candidate_voter_count={}
+voter_percent={}
 #candidates={}
 #candidates=dict()
 #greatest_increase=["",0]
@@ -34,10 +35,33 @@ with open(election_csv) as csvfile:
 
         if candidate_names not in candidate_options:
             candidate_options.append(candidate_names)
-            candidate_voter_count[candidate_options]=0
-            candidate_voter_count[candidate_options] += 1
+            print(candidate_names)
+            candidate_voter_count[candidate_names] = 0
 
+        # Count times Candidate name appears
+        candidate_voter_count[candidate_names] += 1
+print(total_votes)
 print(candidate_voter_count)
+
+maximum_votes = max(candidate_voter_count, key=candidate_voter_count.get)
+print (maximum_votes)
+
+#This works, but it shanges the original dictionary with percentage values. 
+#Need to add an extra value with percentages to the dictionary.
+#It also needs to only have 2 decimals after the . NOT ROUNDING CORRECTLY - 1 decimal
+for i in candidate_voter_count:
+    candidate_voter_count[i]=round(float((candidate_voter_count[i]/total_votes)*100),3)
+
+print (candidate_voter_count)
+
+#voter_percent=(candidate_voter_count/total_votes) *100
+#print (voter_percent)
+#Total_percentage=float(votes/float(total_votes)*100)
+
+#if voter_percent == maximum_votes:
+    #type_of_candidate = "Winner"
+#else:
+    #type_of_candidate = "Looser"
 
 
 #candidate_voter_count=election_csv(row[2]).count(int(candidate_names)
@@ -58,11 +82,6 @@ print(candidate_voter_count)
         #             for i in range(len(candidates)):
         #                 candidates[i]=candidates[i].count()
 
-                    #seriesObj = empDfObj.apply (lambda x: True if 11 in list (x) else False, axis=1) 
-                    #numOfRows = len (seriesObj 
-                    #[seriesObj == True].index)
-
-
                
                     #    percent = round(int(row[6]) / int(row[5]), 2)
                     #     review_percent.append(percent)
@@ -70,10 +89,7 @@ print(candidate_voter_count)
                 # candidate_voter_count+=1
                 # candidate_voter_count.append(row[0])
 
-    #if voter_percent == maximum_votes:
-        #type_of_candidate = "Winner"
-    #else:
-        #type_of_candidate = "Looser"
+
 
 #hot_days = [temperature for temperature in july_temperatures if temperature > 90]
 

@@ -16,7 +16,7 @@ voter_percent={}
 #total_net=0
 
 #candidate_index=[]
-maximum_votes=0
+#winning_candidate=0
 
 with open(election_csv) as csvfile:
 
@@ -43,16 +43,60 @@ with open(election_csv) as csvfile:
 print(total_votes)
 print(candidate_voter_count)
 
-maximum_votes = max(candidate_voter_count, key=candidate_voter_count.get)
-print (maximum_votes)
+winning_candidate = max(candidate_voter_count, key=candidate_voter_count.get)
+print (winning_candidate)
 
-#This works, but it shanges the original dictionary with percentage values. 
+#This works, but it changes the original dictionary with percentage values. 
 #Need to add an extra value with percentages to the dictionary.
 #It also needs to only have 2 decimals after the . NOT ROUNDING CORRECTLY - 1 decimal
-for i in candidate_voter_count:
-    candidate_voter_count[i]=round(float((candidate_voter_count[i]/total_votes)*100),3)
 
-print (candidate_voter_count)
+for i in candidate_voter_count():
+    voter_percent[i]=round(float((candidate_voter_count[i]/total_votes)*100),3)
+
+print(voter_percent)
+
+candidate_summary=[candidate_voter_count, voter_percent]
+candidate_voter_summary={}
+for k in candidate_voter_count.keys():
+    candidate_voter_summary[k]=tuple(candidate_voter_summary[k] for candidate_voter_summary in candidate_summary)
+print(candidate_voter_summary)
+
+# def winning_candidate_summary(candidate_voter_count):
+#     # For readability, it can help to assign your values to variables with descriptive names
+#     candidate_votes_total=candidate_voter_count
+#     candidate_percentage=round(float((candidate_voter_count/total_votes)*100),3)
+
+# print(winning_candidate_summary)
+
+#     name = str(wrestler_data[0])
+#     wins = int(wrestler_data[1])
+#     losses = int(wrestler_data[2])
+#     draws = int(wrestler_data[3])
+
+#     # Total matches can be found by adding wins, losses, and draws together
+#     total_matches = wins + losses + draws
+
+#     # Win percent can be found by dividing the the total wins by the total matches and multiplying by 100
+#     win_percent = (wins / total_matches) * 100
+
+
+
+
+# print (candidate_voter_count)
+
+
+#    election_results = (
+#         f"\n\nElection Results\n"
+#         f"-------------------------\n"
+#         f"Total Votes: {total_votes}\n"
+#         f"-------------------------\n")
+#     print(election_results, end="")
+# winning_candidate_summary = (
+#         f"-------------------------\n"
+#         f"Winner: {winning_candidate}\n"
+#         f"-------------------------\n")
+#     print(winning_candidate_summary)
+
 
 #voter_percent=(candidate_voter_count/total_votes) *100
 #print (voter_percent)

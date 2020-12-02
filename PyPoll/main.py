@@ -119,18 +119,17 @@ print(candidate_voter_summary)
 # print (candidate_voter_count)
 
 
-#    election_results = (
-#         f"\n\nElection Results\n"
-#         f"-------------------------\n"
-#         f"Total Votes: {total_votes}\n"
-#         f"-------------------------\n")
-#     print(election_results, end="")
-# winning_candidate_summary = (
-#         f"-------------------------\n"
-#         f"Winner: {winning_candidate}\n"
-#         f"-------------------------\n")
-#     print(winning_candidate_summary)
-
+output=(
+    f"Election Results\n"
+    f"-------------------------\n"
+    f"Total Votes: {total_votes}\n"
+    f"-------------------------\n"
+    f"{candidate_voter_summary}\n"
+    f"-------------------------\n"
+    f"Winner: {winning_candidate}\n"
+    f"-------------------------\n"
+)
+print(output)
 
 #voter_percent=(candidate_voter_count/total_votes) *100
 #print (voter_percent)

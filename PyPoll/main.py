@@ -9,6 +9,8 @@ total_votes=0
 candidate_options = []
 candidate_voter_count={}
 voter_percent={}
+candidate_summary={}
+
 #candidates={}
 #candidates=dict()
 #greatest_increase=["",0]
@@ -51,9 +53,9 @@ print (winning_candidate)
 #It also needs to only have 2 decimals after the . NOT ROUNDING CORRECTLY - 1 decimal
 
 #Works to get me the last value from dictionary
-current_voter_count = candidate_voter_count[candidate_names]
-candidate_voter_count[candidate_names]=[current_voter_count,105630]
-print(current_voter_count)
+# current_voter_count = candidate_voter_count[candidate_names]
+# candidate_voter_count[candidate_names]=[current_voter_count,105630]
+# print(current_voter_count)
 # my_dictionary = {'ages': 32}
 # # the above dictionary has one value for the key 'ages'
 # # let's convert the value for the 'ages' key to a list and include the existing age in it
@@ -63,12 +65,20 @@ print(current_voter_count)
 # >>> {'ages': [32, 42]}
 
 #WORKS!
-# for i in candidate_voter_count:
-#     voter_percent[i]=round(float((candidate_voter_count[i]/total_votes)*100),3)
+for i in candidate_voter_count:
+    voter_percent[i]=round(float((candidate_voter_count[i]/total_votes)*100),3)
 
-# print(voter_percent)
+print(voter_percent)
 
+# for "Correy", "Khan", "Li", "O'Tooley" in candidate_voter_count.items() + voter_percent.items():
+#     candidate_summary["Correy"].append()
 
+# Combines them, but in a weird order
+# candidate_summary={i:voter_percent for i in candidate_voter_count.keys()}
+# keys=candidate_voter_count.keys()
+# values =zip(candidate_voter_count.values(), candidate_summary.values())
+# candidate_voter_summary=dict(zip(keys,values))
+# print(candidate_voter_summary)
 
 #doesn't work
 # candidate_voter_summary=()
@@ -79,11 +89,11 @@ print(current_voter_count)
 # print(candidate_voter_summary)
 
 #WORKS!!!
-# candidate_summary=[candidate_voter_count, voter_percent]
-# candidate_voter_summary={}
-# for k in candidate_voter_count.keys():
-#     candidate_voter_summary[k]=tuple(candidate_voter_summary[k] for candidate_voter_summary in candidate_summary)
-# print(candidate_voter_summary)
+candidate_summary=[candidate_voter_count, voter_percent]
+candidate_voter_summary={}
+for k in candidate_voter_count.keys():
+    candidate_voter_summary[k]=tuple(candidate_voter_summary[k] for candidate_voter_summary in candidate_summary)
+print(candidate_voter_summary)
 
 # def winning_candidate_summary(candidate_voter_count):
 #     # For readability, it can help to assign your values to variables with descriptive names

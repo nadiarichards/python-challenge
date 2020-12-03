@@ -89,11 +89,18 @@ print(voter_percent)
 # print(candidate_voter_summary)
 
 #WORKS!!!
-candidate_summary=[candidate_voter_count, voter_percent]
-candidate_voter_summary={}
-for k in candidate_voter_count.keys():
-    candidate_voter_summary[k]=tuple(candidate_voter_summary[k] for candidate_voter_summary in candidate_summary)
-print(candidate_voter_summary)
+# candidate_summary=[candidate_voter_count, voter_percent]
+# candidate_voter_summary={}
+# for k in candidate_voter_count.keys():
+#     candidate_voter_summary[k]=tuple(candidate_voter_summary[k] for candidate_voter_summary in candidate_summary)
+# print(candidate_voter_summary)
+
+## for candidate_name in candidate_voter_count:
+#     votes=candidate_voter_count.get(candidate_name)
+#     percent=voter_percent.get(candidate_name)
+#     print(candidate_name)
+#     print(votes)
+#     print (percent)
 
 # def winning_candidate_summary(candidate_voter_count):
 #     # For readability, it can help to assign your values to variables with descriptive names
@@ -113,24 +120,48 @@ print(candidate_voter_summary)
 #     # Win percent can be found by dividing the the total wins by the total matches and multiplying by 100
 #     win_percent = (wins / total_matches) * 100
 
+for candidate_name in candidate_voter_count:
+    votes=candidate_voter_count.get(candidate_name)
+    percent=voter_percent.get(candidate_name)
+    output=(
+        f"Election Results\n"
+        f"__________________________\n"
+        f"Total Votes: {total_votes}\n"
+        f"__________________________\n"
+        f"{candidate_name}: {percent:.3f}% ({votes})\n"
+
+    )
+    print(output)
 
 
+# # print (candidate_voter_count)
 
-# print (candidate_voter_count)
 
+# output=(
+#     f"Election Results\n"
+#     f"-------------------------\n"
+#     f"Total Votes: {total_votes}\n"
+#     f"-------------------------\n"
+#     for candidate_name in candidate_voter_summary():
+#         votes=candidate_voter_summary.get(candidate_names)
+#         percent=voter_percent.get(candidate_names)
+#         print(candidate_names)
+#         print(votes)
+#         print(percent)
+#     f"{candidate_voter_summary}\n"
+#     f"-------------------------\n"
+#     f"Winner: {winning_candidate}\n"
+#     f"-------------------------\n"
+# )
+# print(output)
 
-output=(
-    f"Election Results\n"
-    f"-------------------------\n"
-    f"Total Votes: {total_votes}\n"
-    f"-------------------------\n"
-    f"{candidate_voter_summary}\n"
-    f"-------------------------\n"
-    f"Winner: {winning_candidate}\n"
-    f"-------------------------\n"
-)
-print(output)
+    # for candidate_names in candidate_voter_summary:
 
+    #     votes = candidate_voter_summary.get(candidate_names)
+    #     percent=voter_percent.get(candidate_names)
+    #     print(candidate_names)
+    #     print(candidate_name)
+    #     print(votes)
 #voter_percent=(candidate_voter_count/total_votes) *100
 #print (voter_percent)
 #Total_percentage=float(votes/float(total_votes)*100)

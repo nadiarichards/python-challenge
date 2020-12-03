@@ -3,14 +3,13 @@ import csv
 
 # Path to collect data from the Resources folder
 election_csv = os.path.join('Resources', 'election_data.csv')
-# file_output = os.path.join('Analysis', 'election_analysis.txt')
+file_output = os.path.join('Analysis', 'election_analysis.txt')
 
 total_votes=0
 candidate_options = []
 candidate_voter_count={}
 voter_percent={}
 #candidate_summary={}
-
 #candidates={}
 #candidates=dict()
 #greatest_increase=["",0]
@@ -37,16 +36,12 @@ with open(election_csv) as csvfile:
 
         if candidate_names not in candidate_options:
             candidate_options.append(candidate_names)
-            print(candidate_names)
             candidate_voter_count[candidate_names] = 0
 
         # Count times Candidate name appears
         candidate_voter_count[candidate_names] += 1
-print(total_votes)
-print(candidate_voter_count)
 
 winning_candidate = max(candidate_voter_count, key=candidate_voter_count.get)
-print (winning_candidate)
 
 #This works, but it changes the original dictionary with percentage values. 
 #Need to add an extra value with percentages to the dictionary.
@@ -66,9 +61,7 @@ print (winning_candidate)
 
 #WORKS!
 for i in candidate_voter_count:
-    voter_percent[i]=round(float((candidate_voter_count[i]/total_votes)*100),3)
-
-print(voter_percent)
+    voter_percent[i]=(float(candidate_voter_count[i]/total_votes)*100)
 
 # for "Correy", "Khan", "Li", "O'Tooley" in candidate_voter_count.items() + voter_percent.items():
 #     candidate_summary["Correy"].append()
@@ -143,28 +136,31 @@ print(voter_percent)
 # print(winning_summary)
 # )
 
-election_results=(
-    f"Election Results\n"
-    f"__________________________\n"
-    f"Total Votes: {total_votes}\n"
-    f"__________________________\n")
-print(election_results, end="")
+with open(file_output,"w") as txt_file:
 
-for candidate_name in candidate_voter_count:
-    votes=candidate_voter_count.get(candidate_name)
-    percent=voter_percent.get(candidate_name)
-    candidate_summary=(
-        f"{candidate_name}: {percent:.3f}% ({votes})\n")
-    print(candidate_summary)
+    election_results=(
+        f"Election Results\n"
+        f"__________________________\n"
+        f"Total Votes: {total_votes}\n"
+        f"__________________________\n")
+    print(election_results, end="")
+    txt_file.write(election_results)
 
-winning_summary=(
-    f"__________________________\n"
-    f"Winner: {winning_candidate}\n"
-    f"__________________________\n")
-print(winning_summary)
+    for candidate_name in candidate_voter_count:
+        votes=candidate_voter_count.get(candidate_name)
+        percent=voter_percent.get(candidate_name)
+        candidate_summary=(
+            f"{candidate_name}: {percent:.3f}% ({votes})\n")
+        print(candidate_summary)
+        txt_file.write(candidate_summary)
 
-# with open(file_output,"w") as txt_file:
-#     txt_file.write(output)
+    winning_summary=(
+        f"__________________________\n"
+        f"Winner: {winning_candidate}\n"
+        f"__________________________\n")
+    print(winning_summary)
+    txt_file.write(winning_summary)
+
 
 # # print (candidate_voter_count)
 

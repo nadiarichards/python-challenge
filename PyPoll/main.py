@@ -3,13 +3,13 @@ import csv
 
 # Path to collect data from the Resources folder
 election_csv = os.path.join('Resources', 'election_data.csv')
-###file_output = os.path.join('Analysis', 'election_analysis.txt')
+# file_output = os.path.join('Analysis', 'election_analysis.txt')
 
 total_votes=0
 candidate_options = []
 candidate_voter_count={}
 voter_percent={}
-candidate_summary={}
+#candidate_summary={}
 
 #candidates={}
 #candidates=dict()
@@ -120,19 +120,51 @@ print(voter_percent)
 #     # Win percent can be found by dividing the the total wins by the total matches and multiplying by 100
 #     win_percent = (wins / total_matches) * 100
 
+
+# output=tuple(
+#     election_results=(
+#         f"Election Results\n"
+#         f"__________________________\n"
+#         f"Total Votes: {total_votes}\n"
+#         f"__________________________\n")
+#     print(election_results, end="")
+
+#     for candidate_name in candidate_voter_count:
+#         votes=candidate_voter_count.get(candidate_name)
+#         percent=voter_percent.get(candidate_name)
+#         candidate_summary=(
+#             f"{candidate_name}: {percent:.3f}% ({votes})\n")
+#         print(candidate_summary)
+
+#     winning_summary=(
+#         f"__________________________\n"
+#         f"Winner: {winning_candidate}\n"
+#         f"__________________________\n")
+# print(winning_summary)
+# )
+
+election_results=(
+    f"Election Results\n"
+    f"__________________________\n"
+    f"Total Votes: {total_votes}\n"
+    f"__________________________\n")
+print(election_results, end="")
+
 for candidate_name in candidate_voter_count:
     votes=candidate_voter_count.get(candidate_name)
     percent=voter_percent.get(candidate_name)
-    output=(
-        f"Election Results\n"
-        f"__________________________\n"
-        f"Total Votes: {total_votes}\n"
-        f"__________________________\n"
-        f"{candidate_name}: {percent:.3f}% ({votes})\n"
+    candidate_summary=(
+        f"{candidate_name}: {percent:.3f}% ({votes})\n")
+    print(candidate_summary)
 
-    )
-    print(output)
+winning_summary=(
+    f"__________________________\n"
+    f"Winner: {winning_candidate}\n"
+    f"__________________________\n")
+print(winning_summary)
 
+# with open(file_output,"w") as txt_file:
+#     txt_file.write(output)
 
 # # print (candidate_voter_count)
 
